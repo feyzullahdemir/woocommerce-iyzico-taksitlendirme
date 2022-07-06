@@ -7,7 +7,7 @@ Tamamen ücretsiz olan bu eklenti sayesinde iyzico hesabınız da olan  taksitle
 
 ---------------------
 
-<img width="1163" alt="Screen Shot 2022-03-15 at 12 25 32 PM" src="https://user-images.githubusercontent.com/101548542/158347223-5a551689-eb42-455b-8034-f5e443c78fc2.png">
+
 
 **İyzicolu olmak için** -> https://www.iyzico.com/
 
