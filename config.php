@@ -9,9 +9,11 @@ class Config
     public static function options()
     {
         $options = new \Iyzipay\Options();
-        $options->setApiKey('sandbox-LoDo2D258h1uXyjopUvRXj1ir4BiWyAI');
-        $options->setSecretKey('sandbox-VU1fLYVj3wyKWQ66DMEoBBjlreVUVflx');
-        $options->setBaseUrl('https://sandbox-api.iyzipay.com');
+        $options->setApiKey($this->settings['api_key'];);
+        $options->setSecretKey($this->settings['secret_key']);
+        $options->setBaseUrl($this->settings['api_type']);
+        //Api key , secret ve BaseUrl buraya girmeniz gerekmektedir
+        //iyzico woocommerce aktif edince otomatik datadan çekecektir
 
         return $options;
     }
