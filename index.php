@@ -31,17 +31,17 @@ function woo_new_product_tab_content()
 
     //Get product price
     global $product;
-    $regular_price = esc_attr( $product->get_display_price() );
+    $regular_price = ( $product->get_display_price() );
 
     // The new tab content
-    echo esc_html('<h2>Taksit Seçenekleri</h2>');
-    //echo 'Ürünün Fiyatı '.$regular_price.' TL dir.';
+    echo '<h2>Taksit Seçenekleri</h2>';
+    
 
     # create request class
     $request = new \Iyzipay\Request\RetrieveInstallmentInfoRequest();
     $request->setLocale(\Iyzipay\Model\Locale::TR);
     $request->setConversationId(uniqid());
-    //$request->setBinNumber("554960");
+    
     $request->setPrice("$regular_price");
 
     # make request
@@ -74,20 +74,20 @@ function woo_new_product_tab_content()
         $data['banks'][$key] = esc_js($dataParser->cardFamilyName);
         $div = '<div class="card card--';
         $div2 = '">';
-        echo (esc_attr($div . $data['banks'][$key] . $div2));
+        echo (($div . $data['banks'][$key] . $div2));
 
         $divIn1 = '<div class="card__head">';
         $divIn2 = '</div>';
         $divIn3 = '<div class="card__content">';
-        echo(esc_attr($divIn1 . $data['banks'][$key] . $divIn2 . $divIn3));
+        echo(($divIn1 . $data['banks'][$key] . $divIn2 . $divIn3));
 
         $div1 = '<div class="card__cell card__cell--value">';
         $div2 = '</div>';
 
-        echo(esc_html('<div class="card__col card__col--installment"><div class="card__cell card__cell--head">Taksit</div>'));
+        echo('<div class="card__col card__col--installment"><div class="card__cell card__cell--head">Taksit</div>');
         foreach ($dataParser->installmentPrices as $key => $installment) {
             $data['installments'][$key] = esc_js($installment->installmentNumber);
-            echo (esc_attr($div1 . $data['installments'][$key] . $div2));
+            echo (($div1 . $data['installments'][$key] . $div2));
         }
         echo('</div>');
 
@@ -95,16 +95,16 @@ function woo_new_product_tab_content()
         foreach ($dataParser->installmentPrices as $key => $installment) {
 
             $data['installmentPrice'][$key] = esc_js($installment->installmentPrice);
-            echo (esc_attr($div1 . $data['installmentPrice'][$key] . $div2));
+            echo (($div1 . $data['installmentPrice'][$key] . $div2));
 
         }
         echo('</div>');
 
-        echo(esc_html('<div class="card__col card__col--default"><div class="card__cell card__cell--head">Toplam</div>'));
+        echo('<div class="card__col card__col--default"><div class="card__cell card__cell--head">Toplam</div>');
         foreach ($dataParser->installmentPrices as $key => $installment) {
 
             $data['totalPrices'][$key] = esc_js($installment->totalPrice);
-            echo (esc_attr($div1 . $data['totalPrices'][$key] . $div2));
+            echo (($div1 . $data['totalPrices'][$key] . $div2));
 
         }
         echo('</div>');
@@ -112,5 +112,4 @@ function woo_new_product_tab_content()
     }
 echo('</div>');
 }
-
 ?>
