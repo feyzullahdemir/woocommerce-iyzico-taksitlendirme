@@ -3,7 +3,7 @@
 Plugin Name: iyzico taksitlendirme
 Plugin URI: https://wordpress.org/plugins/iyzi-taksit-new
 Description: Ürün için Taksitlendirme tablosunu gösterir
-Version: 0.0.1
+Version: 1.0.0
 Author: Feyzullah Demir
 Author URI: https:feyzullahdemir.com.tr
 License: GNU
@@ -31,18 +31,21 @@ function woo_new_product_tab_content()
 
     //Get product price
     global $product;
-    $regular_price = ( $product->get_display_price() );
+
+    $realPrice = ( $product->get_display_price() );
+
+
 
     // The new tab content
     echo '<h2>Taksit Seçenekleri</h2>';
-    
+    if($realPrice && $realPrice != '0' && $realPrice != '0.0' && $realPrice != '0.00' && $realPrice != false){
 
     # create request class
     $request = new \Iyzipay\Request\RetrieveInstallmentInfoRequest();
     $request->setLocale(\Iyzipay\Model\Locale::TR);
     $request->setConversationId(uniqid());
-    
-    $request->setPrice("$regular_price");
+
+    $request->setPrice("$realPrice");
 
     # make request
     $installmentInfo = \Iyzipay\Model\InstallmentInfo::retrieve($request, Config::options());
@@ -111,5 +114,9 @@ function woo_new_product_tab_content()
     echo ('</div></div>');
     }
 echo('</div>');
+ }
+ else {
+   exit;
+ }
 }
 ?>
